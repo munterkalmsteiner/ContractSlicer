@@ -29,7 +29,9 @@ for file in target_files:
 
     fn = file.split('/')[2].split('.')[0]
     for i in range(hsize - source_height + 1):
-        cropped = target.crop((0, i, source_width, i + source_height))
-        cropped.save(os.path.join(args[2], "%s-%s.png" % (fn, i)))  
+        im = target.crop((0, i, source_width, i + source_height))
+        im = im.convert("L")
+        im = im.convert("1")
+        im.save(os.path.join(args[2], "%s-%s.png" % (fn, i)))  
 
     

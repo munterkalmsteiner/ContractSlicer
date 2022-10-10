@@ -43,8 +43,7 @@ def merge_vertical(im1, im2):
     return im
 
 def image_has_more_wite_than(im, percentage):
-    binary = im.convert("1")
-    colors = binary.getcolors()
+    colors = im.getcolors()
 
     if len(colors) < 2:
         return True
