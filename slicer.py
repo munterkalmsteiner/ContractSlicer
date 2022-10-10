@@ -17,6 +17,7 @@ source_height = source.size[1]
 target_files = glob.glob(args[1])
 
 for file in target_files:
+    print("Slicing %s" % file)
     target = Image.open(file)
     base_width = source_width
     target_width = target.size[0]
@@ -25,10 +26,10 @@ for file in target_files:
     wpercent = (base_width/float(target_width))
     hsize = int((float(target_height)*float(wpercent)))
     target = target.resize((base_width, hsize), resample=Image.Resampling.LANCZOS)
-    
+
+    fn = file.split('/')[2].split('.')[0]
     for i in range(hsize - source_height + 1):
         cropped = target.crop((0, i, source_width, i + source_height))
-        fn = file.split('/')[1].split('.')[0]
         cropped.save(os.path.join(args[2], "%s-%s.png" % (fn, i)))  
 
     
