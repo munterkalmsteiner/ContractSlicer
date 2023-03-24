@@ -1,2 +1,4 @@
 Pillow
 numpy
+pdf2image
+p_tqdm
